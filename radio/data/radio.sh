@@ -19,3 +19,11 @@ awk '{ printf "%s\t %.5f\t %.5f\t %.5f\n", strftime("%F", ($1-40587)*86400 + $2)
 
 #datamash -s sort -g group 
 datamash -s -g 1 mean 3 mean 4 < ${object}_${freq}_gregorian.dat >  ${object}_${freq}_average.dat
+
+date_i = $(awk '{printf "%d\n", $1}' ${object}_${freq}_clean.dat | head -1)
+date_f = $(awk '{printf "%d\n", $1}' ${object}_${freq}_clean.dat | tail -1)
+
+seq $date_1 $date_f > ${object}_date.dat
+
+awk 'FNR==NR{a[$1]=$2;next}{print $1"\t",a[$1]?a[$1]:"NA"}' ${object}_${freq}_average.dat ${object}_date.dat > ${object}_${freq}_final.dat
+
