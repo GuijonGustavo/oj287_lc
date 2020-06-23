@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<style>
+body{
+  font: 15px helvetica,arial,freesans,clean,sans-serif;
+  margin: 20px auto;
+  text-align: center;
+  max-width: 900px;
+}
+#waveform{
+  width: 100%;
+}
+#wave-spectrogram{
+  margin: 10px auto;
+  position: relative;
+}
+#wave-spectrogram canvas{
+  left: 0;
+}
+
+#specLabels{
+    position: absolute!important;
+}
+
+button{
+  background: #eee;
+  border: 1px solid #ddd;
+  border-bottom: 4px solid #ccc;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 10px;
+}
+button:active{
+  outline: none;
+  border-top: 4px solid #eee;
+  border-bottom: 2px solid #777;
+}
+button:focus{
+  outline: none;
+}
+
+</style>
+
+<title>WaveSurfer.js</title>
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<script src="bundle.js"></script>
+<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+</head>
+
+<body>
+<h4>
+</h4>
+
+<div id="waveform"></div>
+
+<div id="wave-spectrogram"></div>
+
+<button class="btn btn-primary" onclick="wavesurfer.playPause()">
+  <i class="glyphicon glyphicon-play"></i>
+  Play/Pause
+</button>
+
+<script>
+var wavesurfer = WaveSurfer.create({
+    container: '#waveform',
+    waveColor: 'violet',
+    progressColor: 'purple'
+});
+
+
+wavesurfer.on('ready', function () {
+  var spectrogram = Object.create(WaveSurfer.Spectrogram);
+  spectrogram.init({
+    wavesurfer: wavesurfer,
+    container: "#wave-spectrogram",
+    fftSamples: 1024,
+    labels: true
+  });
+});
+
+	wavesurfer.load('https://archive.org/download/0j-287-radio/0j287_radio.wav');
+</script>
+
+</body>
+</html>
