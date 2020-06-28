@@ -13,15 +13,14 @@ body{
   width: 100%;
 }
 #wave-spectrogram{
-  margin: 10px auto;
-  position: relative;
+  width: 100%;
+  position:relative;
+  left:-33px;
 }
-#wave-spectrogram canvas{
-  left: 0;
-}
-
-#specLabels{
-    position: absolute!important;
+#wave-lc{
+  width: 100%;
+  position:relative;
+  left:-73px;
 }
 
 button{
@@ -44,19 +43,28 @@ button:focus{
 
 </style>
 
-<title>WaveSurfer.js</title>
+<title>oj287.js</title>
 <script src="https://unpkg.com/wavesurfer.js"></script>
-<script src="bundle.js"></script>
+<!-- <script src="bundle.js"></script> -->
+<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.spectrogram.min.js"></script>
 <script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+
 </head>
 
 <body>
-<h4>
-</h4>
-
+	<h1>Datasonification 0j287 Radio</h1>
+	<h4>Student: Gustavo Magallanes-Guijón. Advisor: Dr. Sergio Mendoza Ramos. Instituto de Astronomía, Universidad Nacional Autónoma de México
+	</h4>
 <div id="waveform"></div>
 
-<div id="wave-spectrogram"></div>
+<div id="wave-lc">
+<img src="/home/wattie/oj287_lc/radio/ts/images/oj287_radio_sound-lc-js.png" width="980" height="150">
+
+</div>
+<div id="wave-spectrogram">
+
+<img src="/home/wattie/oj287_lc/radio/ts/images/oj287_radio_sound-js.png" width="890" height="150">
+</div>
 
 <button class="btn btn-primary" onclick="wavesurfer.playPause()">
   <i class="glyphicon glyphicon-play"></i>
@@ -64,24 +72,37 @@ button:focus{
 </button>
 
 <script>
+
 var wavesurfer = WaveSurfer.create({
-    container: '#waveform',
+    container: document.querySelector('#waveform'),
     waveColor: 'violet',
-    progressColor: 'purple'
+    progressColor: 'purple',
+    backend: 'MediaElement',
+    plugins: [
+        WaveSurfer.regions.create({
+            regions: [
+                {
+                    start: 1,
+                    end: 13,
+                    loop: false,
+                    color: 'hsla(400, 100%, 30%, 0.5)'
+                }, {
+                    start: 25,
+                    end: 47,
+                    loop: false,
+                    color: 'hsla(200, 50%, 70%, 0.4)'
+                }
+            ],
+            dragSelection: {
+                slop: 5
+            }
+        })
+    ]
 });
 
-
-wavesurfer.on('ready', function () {
-  var spectrogram = Object.create(WaveSurfer.Spectrogram);
-  spectrogram.init({
-    wavesurfer: wavesurfer,
-    container: "#wave-spectrogram",
-    fftSamples: 1024,
-    labels: true
-  });
-});
 
 	wavesurfer.load('https://archive.org/download/0j-287-radio/0j287_radio.wav');
+
 </script>
 
 </body>
