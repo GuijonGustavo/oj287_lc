@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<style>
+body{
+  font: 15px helvetica,arial,freesans,clean,sans-serif;
+  margin: 20px auto;
+  text-align: center;
+  max-width: 900px;
+}
+#waveform-radio{
+  width: 100%;
+}
+#wave-spectrogram-radio{
+  width: 100%;
+  position:relative;
+  left:-33px;
+}
+#wave-lc-radio{
+  width: 100%;
+  position:relative;
+  left:-73px;
+}
+#waveform-optical{
+  width: 100%;
+}
+#wave-spectrogram-optical{
+  width: 100%;
+  position:relative;
+  left:-33px;
+}
+#wave-lc-optical{
+  width: 100%;
+  position:relative;
+  left:-73px;
+}
+
+#waveform-x-rays{
+  width: 100%;
+}
+#wave-spectrogram-x-rays{
+  width: 100%;
+  position:relative;
+  left:-33px;
+}
+#wave-lc-x-rays{
+  width: 100%;
+  position:relative;
+  left:-73px;
+}
+
+#waveform-gamma{
+  width: 100%;
+}
+#wave-lc-gamma{
+  width: 100%;
+  position:relative;
+  right:200px;
+}
+#wave-spectrogram-gamma{
+  width: 100%;
+  position:relative;
+  right:175px;
+}
+#wave-wavelets-gamma{
+  width: 100%;
+  position:relative;
+  right:175px;
+}
+
+button{
+  background: #eee;
+  border: 1px solid #ddd;
+  border-bottom: 4px solid #ccc;
+  cursor: pointer;
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 10px;
+}
+button:active{
+  outline: none;
+  border-top: 4px solid #eee;
+  border-bottom: 2px solid #777;
+}
+button:focus{
+  outline: none;
+}
+
+</style>
+
+<title>oj287-datasonification</title>
+<script src="https://unpkg.com/wavesurfer.js"></script>
+<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.spectrogram.min.js"></script>
+<script src="https://unpkg.com/wavesurfer.js/dist/plugin/wavesurfer.regions.min.js"></script>
+
+</head>
+
+<body>
+	<h1>Instituto de Astronomía, Universidad Nacional Autónoma de México</h1>
+	<h2>Student: Gustavo Magallanes-Guijón</h2>
+	<h2>Advisor: Dr. Sergio Mendoza Ramos </h2>
+
+	<!-- Radio Zone -->
+
+	<h1>Datasonification Oj287 Radio</h1>
+<div id="waveform-radio"></div>
+
+<div id="wave-lc-radio"><img src="../freq/radio/ts/images/oj287_radio_sound-lc-js.png" width="980" height="150"></div>
+
+<div id="wave-spectrogram-radio"><img src="../freq/radio/ts/images/oj287_radio_sound-js.png" width="890" height="150"></div>
+
+<button class="btn btn-primary" onclick="wavesurferRadio.playPause()">
+  <i class="glyphicon glyphicon-play"></i>
+  Play/Pause
+</button>
+
+<!-- End Radio Zone -->
+
+	<!-- Optical Zone -->
+
+	<h1>Datasonification Oj287 Optical</h1>
+<div id="waveform-optical"></div>
+
+<div id="wave-lc-optical"><img src="../freq/radio/ts/images/oj287_radio_sound-lc-js.png" width="980" height="150"></div>
+
+<div id="wave-spectrogram-optical"><img src="../freq/radio/ts/images/oj287_radio_sound-js.png" width="890" height="150"></div>
+
+<button class="btn btn-primary" onclick="wavesurferOptical.playPause()">
+  <i class="glyphicon glyphicon-play"></i>
+  Play/Pause
+</button>
+<!-- End Optical Zone -->
+
+	<!-- X-rays Zone -->
+
+	<h1>Datasonification Oj287 X-Rays</h1>
+<div id="waveform-x-rays"></div>
+
+<div id="wave-lc-x-rays"><img src="../freq/radio/ts/images/oj287_radio_sound-lc-js.png" width="980" height="150"></div>
+
+<div id="wave-spectrogram-x-rays"><img src="../freq/radio/ts/images/oj287_radio_sound-js.png" width="890" height="150"></div>
+
+<button class="btn btn-primary" onclick="wavesurferXrays.playPause()">
+  <i class="glyphicon glyphicon-play"></i>
+  Play/Pause
+</button>
+<!-- End X-rays Zone -->
+
+	<!-- Gamma Zone -->
+
+	<h1>Datasonification Oj287 Gamma</h1>
+<div id="waveform-gamma"></div>
+
+<div id="wave-spectrogram-gamma"><img src="images/oj287_gamma_spectrum.png" width="1380" height="190"></div>
+<div id="wave-wavelets-gamma"><img src="images/oj287_gamma_wavelets.png" width="1380" height="190"></div>
+<div id="wave-lc-gamma"><img src="images/oj287_gamma_web-lc.png" width="1220" height="190"></div>
+
+<button class="btn btn-primary" onclick="wavesurferGamma.playPause()">
+  <i class="glyphicon glyphicon-play"></i>
+  Play/Pause
+</button>
+<!-- End Gamma Zone -->
+
+
+
+<script>
+
+var wavesurferRadio = WaveSurfer.create({
+    container: document.querySelector('#waveform-radio'),
+    waveColor: 'violet',
+    progressColor: 'purple',
+    backend: 'MediaElement',
+    plugins: [
+        WaveSurfer.regions.create({
+            regions: [
+                {
+                    start: 1,
+                    end: 13,
+                    loop: false,
+                    color: 'hsla(400, 100%, 30%, 0.5)'
+                }, {
+                    start: 25,
+                    end: 47,
+                    loop: false,
+                    color: 'hsla(200, 50%, 70%, 0.4)'
+                }
+            ],
+            dragSelection: {
+                slop: 5
+            }
+        })
+    ]
+});
+
+
+	wavesurferRadio.load('https://archive.org/download/0j-287-radio/0j287_radio.wav');
+
+</script>
+
+<script>
+
+var wavesurferOptical = WaveSurfer.create({
+    container: document.querySelector('#waveform-optical'),
+    waveColor: 'violet',
+    progressColor: 'purple',
+    backend: 'MediaElement',
+    plugins: [
+        WaveSurfer.regions.create({
+            regions: [
+                {
+                    start: 1,
+                    end: 13,
+                    loop: false,
+                    color: 'hsla(400, 100%, 30%, 0.5)'
+                }, {
+                    start: 25,
+                    end: 47,
+                    loop: false,
+                    color: 'hsla(200, 50%, 70%, 0.4)'
+                }
+            ],
+            dragSelection: {
+                slop: 5
+            }
+        })
+    ]
+});
+
+
+	wavesurferOptical.load('https://archive.org/download/oj287_optico/oj287_optico.wav');
+
+</script>
+
+<script>
+
+var wavesurferXrays = WaveSurfer.create({
+    container: document.querySelector('#waveform-x-rays'),
+    waveColor: 'violet',
+    progressColor: 'purple',
+    backend: 'MediaElement',
+    plugins: [
+        WaveSurfer.regions.create({
+            regions: [
+                {
+                    start: 1,
+                    end: 13,
+                    loop: false,
+                    color: 'hsla(400, 100%, 30%, 0.5)'
+                }, {
+                    start: 25,
+                    end: 47,
+                    loop: false,
+                    color: 'hsla(200, 50%, 70%, 0.4)'
+                }
+            ],
+            dragSelection: {
+                slop: 5
+            }
+        })
+    ]
+});
+
+
+	wavesurferXrays.load('https://archive.org/download/oj287_x-rays/oj287_x-rays.wav');
+
+</script>
+
+
+<script>
+
+var wavesurferGamma = WaveSurfer.create({
+    container: document.querySelector('#waveform-gamma'),
+    waveColor: 'violet',
+    progressColor: 'purple',
+    backend: 'MediaElement',
+    plugins: [
+        WaveSurfer.regions.create({
+            regions: [
+                {
+                    start: 1,
+                    end: 13,
+                    loop: false,
+                    color: 'hsla(400, 100%, 30%, 0.5)'
+                }, {
+                    start: 25,
+                    end: 47,
+                    loop: false,
+                    color: 'hsla(200, 50%, 70%, 0.4)'
+                }
+            ],
+            dragSelection: {
+                slop: 5
+            }
+        })
+    ]
+});
+
+	wavesurferGamma.load('https://archive.org/download/oj287_gamma_mono/oj287_gamma_mono.wav');
+
+</script>
+
+
+</body>
+</html>
+
