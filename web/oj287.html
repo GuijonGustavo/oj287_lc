@@ -36,27 +36,29 @@ body{
   left:-73px;
 }
 
+
 #waveform-x-rays{
   width: 100%;
 }
 #wave-spectrogram-x-rays{
   width: 100%;
   position:relative;
-  left:-33px;
+  right:175px;
+}
+#wave-wavelets-x-rays{
+  width: 100%;
+  position:relative;
+  right:175px;
 }
 #wave-lc-x-rays{
   width: 100%;
   position:relative;
-  left:-73px;
+  right:200px;
 }
+
 
 #waveform-gamma{
   width: 100%;
-}
-#wave-lc-gamma{
-  width: 100%;
-  position:relative;
-  right:200px;
 }
 #wave-spectrogram-gamma{
   width: 100%;
@@ -67,6 +69,11 @@ body{
   width: 100%;
   position:relative;
   right:175px;
+}
+#wave-lc-gamma{
+  width: 100%;
+  position:relative;
+  right:200px;
 }
 
 button{
@@ -137,9 +144,9 @@ button:focus{
 	<h1>Datasonification Oj287 X-Rays</h1>
 <div id="waveform-x-rays"></div>
 
-<div id="wave-lc-x-rays"><img src="../freq/radio/ts/images/oj287_radio_sound-lc-js.png" width="980" height="150"></div>
-
-<div id="wave-spectrogram-x-rays"><img src="../freq/radio/ts/images/oj287_radio_sound-js.png" width="890" height="150"></div>
+<div id="wave-spectrogram-x-rays"><img src="../freq/x-rays/midi/images/oj287_x-rays_spectrum.png" width="1380" height="190"></div>
+<div id="wave-wavelets-x-rays"><img src="../freq/x-rays/midi/images/oj287_x-rays_wavelets.png" width="1380" height="190"></div>
+<div id="wave-lc-x-rays"><img src="../freq/x-rays/ts/images/oj287_x-rays_web-lc.png" width="1220" height="190"></div>
 
 <button class="btn btn-primary" onclick="wavesurferXrays.playPause()">
   <i class="glyphicon glyphicon-play"></i>
@@ -262,7 +269,7 @@ var wavesurferXrays = WaveSurfer.create({
 });
 
 
-	wavesurferXrays.load('https://archive.org/download/oj287_x-rays/oj287_x-rays.wav');
+	wavesurferXrays.load('https://archive.org/download/oj287_x-rays_mono-trend/oj287_x-rays_mono-trend.wav');
 
 </script>
 
